@@ -284,6 +284,7 @@ img {
     right: 0;
     padding: 25px;
     color: var(--gray-light);
+    cursor: pointer;
 }
 
 .searchBar.open {

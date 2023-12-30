@@ -30,7 +30,7 @@ const getPostById = async (req, res) => {
   try {
     let slug = req.params.id;
     const data = await Post.findById({ _id: slug });
-    res.render("post", {data});
+    res.render("post", { data });
   } catch (error) {
     console.log(error);
   }
@@ -39,8 +39,27 @@ const getPostById = async (req, res) => {
 // SearchBar Post Request
 // Pendinggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg
 
-const searchTerm = async(req,res) => {
-  
-}
+const searchTerm = async (req, res) => {
+  try {
+    const searchTerm = req.body.searchTerm;
+    // var newString = searchTerm.replace(/[^A-Z0-9]+/ig, " ").toLowerCase();
+    var newString = searchTerm.replace(/[^A-Z0-9]+/ig, " "); // 'i' is for case-insensitive matching. 'g' flag ensures that all such sequences are found in the entire input string, not just the first occurrence.
+    const data = await Post.find({
+      $or: [
+        { title: { $regex: new RegExp(newString, "i") } },
+        { body: { $regex: new RegExp(newString, "i") } },
+      ],
+    });
+    if (data.length === 0) {
+      res.redirect('/');
+    }
+    else{
+      res.render("search",{data})
+    }
+    console.log(newString);
+  } catch (error) {
+    console.log(error);
+  }
+};
 
-module.exports = { getPosts, getPostById,searchTerm };
+module.exports = { getPosts, getPostById, searchTerm };

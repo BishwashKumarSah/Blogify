@@ -16,6 +16,9 @@ connectDB();
 
 app.use(express.static("public"));
 
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+
 // Templating Engine
 app.use(expressLayout);
 app.set("layout", "./layouts/main");
@@ -23,4 +26,6 @@ app.set("view engine", "ejs");
 
 app.use("/", routes);
 
-app.listen(PORT, () => console.log(`Server started at http://localhost:${PORT}`));
+app.listen(PORT, () =>
+  console.log(`Server started at http://localhost:${PORT}`)
+);
