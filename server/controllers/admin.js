@@ -27,8 +27,8 @@ const showRegister = async (req, res) => {
       description: "Register Page",
     };
     res.render("admin/register", { local, layout: adminLayout });
-  } catch (error) {
-    console.log(error);
+  } catch (e) {
+    console.log(e);
   }
 };
 
