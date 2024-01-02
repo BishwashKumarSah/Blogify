@@ -1,6 +1,7 @@
 require("dotenv").config();
 
-const routes = require("./server/routes/main");
+const userRoutes = require("./server/routes/main");
+const adminRoutes = require("./server/routes/admin");
 
 const express = require("express");
 const expressLayout = require("express-ejs-layouts");
@@ -24,7 +25,8 @@ app.use(expressLayout);
 app.set("layout", "./layouts/main");
 app.set("view engine", "ejs");
 
-app.use("/", routes);
+app.use("/", userRoutes);
+app.use("/", adminRoutes);
 
 app.listen(PORT, () =>
   console.log(`Server started at http://localhost:${PORT}`)

@@ -56,6 +56,7 @@ textarea {
     font-family: 'Poppins', sans-serif;
     padding: 0.7rem 0.75rem;
     margin-bottom: 1rem;
+    margin-top: 0.3rem;
 }
 
 .btn {
@@ -84,10 +85,15 @@ img {
     max-width: 982px;
     margin: 0 auto;
     padding: 0px 10px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+
 }
 
 .main {
     padding: 20px 0px;
+    flex: 1;
 }
 
 /* Hero Section */
@@ -261,10 +267,12 @@ img {
 }
 
 .footer {
-    text-align: center;
+
     font-weight: 300;
-    color: (--grey);
-    margin-top: 10px;
+    color: (--grey);   
+    text-align: center;
+
+
 }
 
 /* Search Bar */
@@ -290,4 +298,13 @@ img {
 .searchBar.open {
     transform: translateY(0);
     transition: transform 0.1s;
+}
+
+/* Admin */
+.admin_header {
+    text-align: center;
+}
+
+.login_form {
+    margin-top: 8rem;
 }
