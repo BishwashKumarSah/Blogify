@@ -3,8 +3,8 @@ const adminLayout = "../views/layouts/admin";
 const user = require("../models/User");
 
 const handleErrors = (err) => {
-  console.log("message", err.message);
-  console.log("code", err.code);
+  let errors = { username: "", password: "" };
+  console.log(err.errors);
 };
 
 // Get Admin Login
@@ -38,7 +38,7 @@ const postAdminRegister = async (req, res) => {
   try {
     const { username, password } = req.body;
     const data = await user.create({ username, password });
-    res.redirect("/admin/register");
+    res.status(201).redirect("/");
     console.log(data);
   } catch (error) {
     const err = handleErrors(error);
