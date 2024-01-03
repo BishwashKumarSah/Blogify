@@ -308,3 +308,10 @@ img {
 .login_form {
     margin-top: 8rem;
 }
+
+.error.password__error,
+.error.email__error{
+    text-align: center;
+    color: red;
+    margin-top: 1.2rem;
+}

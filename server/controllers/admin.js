@@ -4,7 +4,19 @@ const user = require("../models/User");
 
 const handleErrors = (err) => {
   let errors = { username: "", password: "" };
-  console.log(err.errors);
+
+  if (err.code === 11000) {
+    errors.username = "This user is already taken";
+    return errors;
+  }
+
+  if (err.message.includes("user validation failed")) {
+    Object.values(err.errors).forEach(({ properties }) => {
+      errors[properties.path] = properties.message;
+    });
+  }
+
+  return errors;
 };
 
 // Get Admin Login
@@ -26,7 +38,8 @@ const showRegister = async (req, res) => {
       title: "Register",
       description: "Register Page",
     };
-    res.render("admin/register", { local, layout: adminLayout });
+    let errors = { username: "", password: "" };
+    res.render("admin/register", { errors,local, layout: adminLayout });
   } catch (e) {
     console.log(e);
   }
@@ -35,14 +48,15 @@ const showRegister = async (req, res) => {
 // Post Admin
 
 const postAdminRegister = async (req, res) => {
-  try {
+  try {    
     const { username, password } = req.body;
     const data = await user.create({ username, password });
     res.status(201).redirect("/");
     console.log(data);
   } catch (error) {
-    const err = handleErrors(error);
-    res.json({ err });
+    const errors = handleErrors(error);
+    console.log(errors);
+    res.status(401).render("admin/register", { errors, layout: adminLayout });
   }
 };
 
