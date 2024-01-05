@@ -56,7 +56,7 @@ const searchTerm = async (req, res) => {
     else{
       res.render("search",{data})
     }
-    console.log(newString);
+    // console.log(newString);
   } catch (error) {
     console.log(error);
   }
