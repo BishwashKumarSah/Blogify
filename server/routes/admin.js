@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
 
+const { authMiddleware } = require("../middleware/admin");
+
 const {
   showLogin,
   showRegister,
@@ -13,11 +15,12 @@ const {
 router.get("/admin/login", showLogin);
 router.get("/admin/register", showRegister);
 
+// Get Admin DashBoard
+router.get("/admin/dashboard/",authMiddleware, showDashboard);
+
 // Post Admin Register
 router.post("/admin/login", postAdminLogin);
 router.post("/admin/signup", postAdminRegister);
 
-// Get Admin DashBoard
-router.get("/admin/dashboard", showDashboard);
 
 module.exports = router;

@@ -43,6 +43,9 @@ app.set("view engine", "ejs");
 app.use("/", userRoutes);
 app.use("/", adminRoutes);
 
+app.get('*', function(req, res) {
+  res.redirect('/')
+});
 app.listen(PORT, () =>
   console.log(`Server started at http://localhost:${PORT}`)
 );

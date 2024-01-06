@@ -5,6 +5,8 @@ const bcrypt = require("bcrypt");
 
 const user = require("../models/User");
 
+
+
 const handleErrors = (err) => {
   let errors = { username: "", password: "" };
   let loginError = "";
@@ -97,7 +99,7 @@ const postAdminLogin = async (req, res) => {
         maxAge: maxAge * 1000,
         httpOnly: true,
       });
-      res.status(200).render("admin/dashboard");
+      res.status(301).redirect('/admin/dashboard');
     } else {
       throw new Error("Invalid Username or Password");
     }
