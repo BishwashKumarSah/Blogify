@@ -4,8 +4,7 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
 const user = require("../models/User");
-
-
+const Post = require("../models/Post");
 
 const handleErrors = (err) => {
   let errors = { username: "", password: "" };
@@ -99,7 +98,7 @@ const postAdminLogin = async (req, res) => {
         maxAge: maxAge * 1000,
         httpOnly: true,
       });
-      res.status(301).redirect('/admin/dashboard');
+      res.status(301).redirect("/admin/dashboard");
     } else {
       throw new Error("Invalid Username or Password");
     }

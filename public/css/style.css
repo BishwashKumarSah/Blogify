@@ -316,10 +316,6 @@ img {
     transition: transform 0.1s;
 }
 
-/* Admin */
-.admin_header {
-    text-align: center;
-}
 
 .login_form {
     margin-top: 8rem;
@@ -331,4 +327,10 @@ img {
     text-align: center;
     color: red;
     margin-top: 1.2rem;
+}
+
+
+/* Admin */
+.admin_header {
+    text-align: center;
 }
