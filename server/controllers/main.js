@@ -7,7 +7,7 @@ const location = require("location-href");
 const getPosts = async (req, res) => {
   try {
     let postPerPage = 5;
-    console.log(req.query);
+    // console.log(req.query);
     if (isNaN((req.query.page)) || req.query.page == 0) {
       req.query.page = 1;
     }

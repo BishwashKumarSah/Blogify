@@ -129,8 +129,14 @@ const postAdminRegister = async (req, res) => {
   }
 };
 
+function demo(){
+  val1= 1
+  val2 = 4
+  return {val1,val2}
+}
 // * Get Admin DashBoard
 const showDashboard = (req, res) => {
+  const data = demo();
   res.render("admin/dashboard");
 };
 
